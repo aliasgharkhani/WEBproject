@@ -4,10 +4,6 @@ import { Menu,Grid, Dropdown, Icon} from 'semantic-ui-react'
 
 import {
     Container,
-    Divider,
-    Header,
-    Image,
-    List,
     Segment,
 } from 'semantic-ui-react'
 
