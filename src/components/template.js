@@ -22,7 +22,6 @@ class Navbar extends Component {
     };
     handleItemClick = (e, {name,path}) => {
         this.setState({activeItem: name});
-        // console.log(this.state.activeItem);
         if(this.props.location.pathname!==path)
             this.props.history.push(path);
     };
@@ -52,7 +51,6 @@ class Navbar extends Component {
                     <Menu.Item position={'right'}>
                         <Dropdown item text={this.state.name} >
                             <Dropdown.Menu>
-                                {/*<Dropdown.Header>Text Size</Dropdown.Header>*/}
                                 <Dropdown.Item onClick={Logout}><Icon style={{textAlign:'center'}} name='log out'/></Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
@@ -67,7 +65,6 @@ class Navbar extends Component {
                         onClick={this.handleItemClick}
                         path = '/login'
                         position={'right'}
-                        // style={{color:'white'}}
                     ><Icon name='user'/></Menu.Item>
 
                 )
