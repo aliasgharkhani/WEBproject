@@ -70,10 +70,6 @@ class App extends Component {
                     <Tab panes={basketballNews} />
                 </Segment>
             </div>;
-        // const options = [
-        //     { key: 1, text: 'football', value: 1 },
-        //     { key: 2, text: 'basketball', value: 2 }
-        // ];
         const options = [
             { value: 'football', label: 'football' },
             { value: 'basketball', label: 'basketball' },
@@ -94,7 +90,6 @@ class App extends Component {
         const onGoing =
             <Segment>
                 <div>on goings</div>
-                {/*<Dropdown placeholder='Select Sport' search selection options={options} onChange={this.handleSelectorChange}/>*/}
                 <Select placeholder='Select Sport' search selection options={options} onChange={this.handleSelectorChange}/>
                 <br/>
                 {myTab()}
