@@ -4,6 +4,10 @@ import { Menu,Grid, Dropdown, Icon} from 'semantic-ui-react'
 
 import {
     Container,
+    Divider,
+    Header,
+    Image,
+    List,
     Segment,
 } from 'semantic-ui-react'
 
@@ -13,8 +17,7 @@ class Navbar extends Component {
         activeItem: 'Home',
         setName:false,
         name:'Login',
-        change:false,
-        first: true
+        change:false
     };
     handleItemClick = (e, {name,path}) => {
         this.setState({activeItem: name});
@@ -22,17 +25,6 @@ class Navbar extends Component {
             this.props.history.push(path);
     };
     render() {
-        if(this.state.first){
-            const a = this.props.location.pathname.substr(1);
-            if (a) {
-                this.setState({first: false, activeItem: a})
-            }
-            else{
-                this.setState({first: false, activeItem: 'home'})
-            }
-
-        }
-
         if(localStorage.getItem('username')!==null && !this.state.setName){
             this.setState({setName:true,name:localStorage.getItem('username')})
         }
@@ -45,8 +37,9 @@ class Navbar extends Component {
             if(localStorage.getItem('username') !== null) {
                 return (
                     <Menu.Item position={'right'}>
-                        <Dropdown item text={this.state.name} >
+                        <Dropdown item text={this.state.name} style={{color:'white'}}>
                             <Dropdown.Menu>
+                                {/*<Dropdown.Header>Text Size</Dropdown.Header>*/}
                                 <Dropdown.Item onClick={Logout}><Icon style={{textAlign:'center'}} name='log out'/></Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
@@ -56,11 +49,11 @@ class Navbar extends Component {
             else{
                 return(
                     <Menu.Item
-                        name='login'
-                        active={activeItem === 'login'}
-                        onClick={this.handleItemClick}
                         path = '/login'
+                        active={activeItem === 'Teams'}
+                        onClick={this.handleItemClick}
                         position={'right'}
+                        style={{color:'white'}}
                     ><Icon name='user'/></Menu.Item>
 
                 )
@@ -69,27 +62,27 @@ class Navbar extends Component {
         const { activeItem } = this.state;
         return (
             <Segment inverted>
-                <Menu inverted style={{height:'10px'}} secondary>
-                    <Menu.Item
-                               name='home'
-                               path = '/'
-                               active={activeItem === 'home'}
-                               onClick={this.handleItemClick}
-                    >Home</Menu.Item>
-                    <Menu.Item
-                        name='teams'
-                        path = '/'
-                        active={activeItem === 'teams'}
-                        onClick={this.handleItemClick}
-                    >Teams</Menu.Item>
-                    <Menu.Item
-                        name='players'
-                        path = '/'
-                        active={activeItem === 'players'}
-                        onClick={this.handleItemClick}
-                    >Players</Menu.Item>
-                    {Login_Logout()}
-                </Menu>
+            <Menu inverted style={{height:'10px'}} secondary>
+                <Menu.Item to='/login'
+                           name='Home'
+                           path = '/'
+                           active={activeItem === 'Home'}
+                           onClick={this.handleItemClick}
+                >Home</Menu.Item>
+                <Menu.Item
+                    name='Teams'
+                    path = '/'
+                    active={activeItem === 'Teams'}
+                    onClick={this.handleItemClick}
+                >Teams</Menu.Item>
+                <Menu.Item
+                    name='Players'
+                    path = '/'
+                    active={activeItem === 'Players'}
+                    onClick={this.handleItemClick}
+                >Players</Menu.Item>
+                {Login_Logout()}
+            </Menu>
             </Segment>
 
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Tab, Segment, Dropdown} from 'semantic-ui-react'
 import Template from '../components/template'
-import Select from 'react-select';
+
 
 
 class App extends Component {
@@ -10,8 +10,7 @@ class App extends Component {
         this.getTodoList = this.getTodoList.bind(this);
         this.state = {
             Fnews: ['ali'],
-            Bnews: '',
-            selectedSport : "football"
+            Bnews: ''
         };
         this.state.Fnews.push('mammad');
     }
@@ -20,65 +19,28 @@ class App extends Component {
             return <li key={i}>{fnews}</li>
         });
     }
-    handleSelectorChange = (selectedOption) => {
-        this.setState({ selectedOption });
-        console.log(selectedOption.value);
-        if(selectedOption.value === "football"){
-            this.setState({selectedSport:"football"})
-        }
-        else{
-            this.setState({selectedSport:"basketball"})
-        }
-    };
     render() {
 
-        const footballNews = [
-            { menuItem: 'favorite', render: () => <Tab.Pane><ul>{this.getTodoList()}</ul></Tab.Pane> },
-            { menuItem: 'new', render: () => <Tab.Pane><div>Mahdi</div></Tab.Pane> },
-        ];
-        const basketballNews = [
+        const panes = [
             { menuItem: 'favorite', render: () => <Tab.Pane><ul>{this.getTodoList()}</ul></Tab.Pane> },
             { menuItem: 'new', render: () => <Tab.Pane><div>Taha</div></Tab.Pane> },
         ];
-        const myTab = () => {
-            console.log('umadam')
-            if(this.state.selectedSport === "football"){
-                return (
-                    <div>
-                        <div>{this.state.selectedSport}</div>
-                        <Tab panes={footballNews}/>
-                    </div>
-                )
-            }
-            else{
-                return (
-                    <div>
-                        <div>{this.state.selectedSport}</div>
-                        <Tab panes={basketballNews}/>
-                    </div>
-                )
-            }
-        }
         const sport_news =
             <div>
                 <Segment>
                     <div>Football</div>
-                    <Tab panes={footballNews} />
+                    <Tab panes={panes} />
                 </Segment>
                 <Segment>
                     <div>Basketball</div>
-                    <Tab panes={basketballNews} />
+                    <Tab panes={panes} />
                 </Segment>
             </div>;
-        const options = [
-            { value: 'football', label: 'football' },
-            { value: 'basketball', label: 'basketball' },
-        ];
+
         const news =
             <Segment>
-
                 <a id="ew" href="https://www.google.com">news</a><br/>
-                <a href="https://www.google.com">ews</a><br/>
+                <a href="https://www.google.com">news</a><br/>
                 <a href="https://www.google.com">news</a><br/>
                 <a href="https://www.google.com">news</a><br/>
                 <a href="https://www.google.com">news</a><br/>
@@ -86,13 +48,16 @@ class App extends Component {
                 <a href="https://www.google.com">news</a><br/>
                 <a href="https://www.google.com">news</a><br/>
             </Segment>;
+        const options = [
+            { key: 1, text: 'football', value: 1 },
+            { key: 2, text: 'basketball', value: 2 }
+        ];
 
         const onGoing =
             <Segment>
                 <div>on goings</div>
-                <Select placeholder='Select Sport' search selection options={options} onChange={this.handleSelectorChange}/>
-                <br/>
-                {myTab()}
+                <Dropdown placeholder='Select Sport' search selection options={options} onChange={(e,{value}) => {console.log(value)}}/>
+                {/*<Tab panes={panes} />*/}
             </Segment>;
         return (
 
